@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <router-view></router-view>
-    <nav-bar></nav-bar>
     <nav class="mui-bar mui-bar-tab">
       <router-link class="mui-tab-item-zcy" to="/home">
         <span class="mui-icon mui-icon-home"></span>
@@ -24,13 +23,11 @@
 </template>
 
 <script>
-// import NavBar from './components/common/navbar/NavBar.vue'
 
 export default {
-  name: 'App'
-  // components:{
-  //   NavBar
-  // }
+  name: 'App',
+  components:{
+  }
 }
 </script>
 
