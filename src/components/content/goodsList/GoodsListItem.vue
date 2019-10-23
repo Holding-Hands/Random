@@ -2,7 +2,7 @@
   <div class="goods-list-item">
     <div v-for="item in goodsList" :key="item.iid" class="goods-item">
       <a :href="item.link">
-        <img :src="item.show.img" alt="">
+        <img :src="item.show.img" alt="" @load="imageLoad">
       </a>
       <p class="title">{{item.title}}</p>
       <div class="bottom">
@@ -25,6 +25,11 @@
           return {}
         }
       }
+    },
+    methods:{
+      imageLoad(){
+        this.$bus.$emit('itemImageLoad')
+      }
     }
   }
 </script>
@@ -37,6 +42,7 @@
     padding: 7px;
     background-color: #fff;
 
+
     .goods-item {
       display: flex;
       flex-direction: column;
@@ -44,7 +50,7 @@
       width: 49%;
       border: 1px solid #999;
       box-shadow: 0 0 10px #999;
-      margin: 0;
+      margin: 5px 0 0;
       min-height: 180px;
 
       p {

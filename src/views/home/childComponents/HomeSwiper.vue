@@ -4,7 +4,7 @@
       <el-carousel height="187.19px">
         <el-carousel-item v-for="item in banners" :key="item.href">
           <a :href="item.link">
-            <img :src="item.image" alt="">
+            <img :src="item.image" alt="" @load="imageLoad">
           </a>
         </el-carousel-item>
       </el-carousel>
@@ -22,9 +22,21 @@
           return {}
         }
       }
-    }
-
-
+    },
+    data(){
+      return {
+        isEmit:true
+      }
+    },
+    methods:{
+      imageLoad(){
+        //检测是否发送，因为只发送一次知道高度
+        if (this.isEmit) {
+          this.$emit('imageLoad');
+          this.isEmit=!this.isEmit;
+        }
+      }
+    },
   }
 </script>
 
