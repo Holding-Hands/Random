@@ -1,15 +1,12 @@
 <template>
   <div class="goods-list-item">
     <div v-for="item in goodsList" :key="item.iid" class="goods-item">
-      <div class="up">
-        <a :href="item.link">
-          <img :src="item.show.img" alt="">
-
-        </a>
-      </div>
+      <a :href="item.link">
+        <img :src="item.show.img" alt="">
+      </a>
+      <p class="title">{{item.title}}</p>
       <div class="bottom">
-        <p>{{item.title}}</p>
-        <p>
+        <p class="sell">
           <span class="price">￥{{item.price}}</span>
           <span class="collect">收藏{{item.cfav}}</span>
         </p>
@@ -37,35 +34,54 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    padding: 7px;
+    background-color: #fff;
 
     .goods-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       width: 49%;
       border: 1px solid #999;
       box-shadow: 0 0 10px #999;
-      margin: 3px 0;
-      padding: 2px;
-      min-height: 232px;
+      margin: 0;
+      min-height: 180px;
 
-      .up {
-
-        img {
-          width: 100%;
-        }
-
-        p {
-          margin-top: 3px;
-          text-align: center;
-        }
+      p {
+        margin: 0;
+        padding-top: 5px;
       }
 
+      img {
+        width: 100%;
+      }
+
+      .title {
+        /*overflow: hidden;*/
+        /*text-overflow: ellipsis;*/
+        /*white-space: nowrap;*/
+        color: #ccc;
+        margin: 0;
+      }
       .bottom {
         flex-direction: column;
         justify-content: space-between;
-        margin-right: 5px;
+        margin: 5px 0 0;
+        padding: 2px;
+        background-color: #cccccc;
+        /*position: absolute;*/
+        /*bottom: 2px;*/
+        /*right: 0;*/
 
+        .price {
+          color: red;
+          font-size: 16px;
+          font-weight: bold;
+        }
 
-        p:last-child{
-          margin-bottom: 5px;
+        .sell {
+          display: flex;
+          justify-content: space-between;
         }
       }
     }
