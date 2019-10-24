@@ -51,8 +51,10 @@
       },
       refresh(){
         this.scroll&&this.scroll.refresh();
-        console.log('---');
-      }
+      },
+      saveScrollY(){
+        return this.scroll?this.scroll.y:0;
+      },
     }
   }
 </script>

@@ -1,9 +1,7 @@
 <template>
   <div class="goods-list-item">
-    <div v-for="item in goodsList" :key="item.iid" class="goods-item">
-      <a :href="item.link">
+    <div v-for="(item,index) in goodsList" :key="index" class="goods-item" @click="itemClick(item)">
         <img :src="item.show.img" alt="" @load="imageLoad">
-      </a>
       <p class="title">{{item.title}}</p>
       <div class="bottom">
         <p class="sell">
@@ -20,15 +18,24 @@
     name: "GoodsListItem",
     props: {
       goodsList: {
-        // type:Object,
+        // type:Array,
         default() {
-          return {}
+          return {
+          }
         }
       }
     },
     methods:{
       imageLoad(){
         this.$bus.$emit('itemImageLoad')
+      },
+      itemClick(item){
+        this.$router.push('/detail/'+item.iid);
+        // this.$router.push({
+        //   path:'/detail',
+        //   query:{}
+        // });
+
       }
     }
   }

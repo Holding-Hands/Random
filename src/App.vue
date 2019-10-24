@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+<!--    keep-alive 离开组件时不会被销毁-->
+    <keep-alive exclude="Detail">
+      <router-view></router-view>
+    </keep-alive>
     <nav class="mui-bar mui-bar-tab">
       <router-link class="mui-tab-item-zcy" to="/home">
         <span class="mui-icon mui-icon-home"></span>

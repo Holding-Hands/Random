@@ -61,6 +61,7 @@
         tabOffSetTop: 0,
         isFixed: false,
         noFixed:true,
+        saveY:0,
       }
     },
     computed: {
@@ -81,7 +82,19 @@
       this.$bus.$on('itemImageLoad', () => {
         // this.$refs.scroll.refresh();
         refresh()
+        // this.$refs.scroll.scrollTo(0,this.saveY,0);
+        // refresh()
       })
+    },
+    destroyed(){
+      console.log('home destroyed');
+    },
+    activated(){
+      this.$refs.scroll.refresh();//进入home组件再次刷新一次，防止自己回到顶部bug
+      this.$refs.scroll.scrollTo(0,this.saveY,0);
+    },
+    deactivated(){
+      this.saveY=this.$refs.scroll.saveScrollY();
     },
     methods: {
       //事件监听相关方法
@@ -113,12 +126,10 @@
       contentScroll(position) {
         this.isFixed=(-position.y)>=this.tabOffSetTop;
         this.noFixed=!this.isFixed;
-        console.log(this.isFixed);
         this.isShow = (-position.y) >1000;
       },
       loadMore() {
         this.getHomeAllGoods(this.currentType);
-        console.log('上拉加载');
       },
       //网络请求相关方法
       getHomeAllDate() {
