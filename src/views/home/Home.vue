@@ -23,6 +23,7 @@
   import GoodsList from '../../components/content/goodsList/GoodsList'
   import Scroll from '../../components/common/scroll/Scroll'
   import BackTop from '../../components/content/backTop/BackTop'
+
   //导入Home子组件
   import HomeSwiper from './childComponents/HomeSwiper'
   import HomeRecommend from './childComponents/HomeRecommend'
@@ -87,7 +88,7 @@
       })
     },
     destroyed(){
-      console.log('home destroyed');
+      // console.log('home destroyed');
     },
     activated(){
       this.$refs.scroll.refresh();//进入home组件再次刷新一次，防止自己回到顶部bug
@@ -169,7 +170,7 @@
   .home-nav {
     background-color: deeppink;
     color: white;
-    z-index: 999;
+    z-index: 9;
     position: fixed;
     left: 0;
     right: 0;
