@@ -14,7 +14,7 @@
     </div>
     <div class="shop-info-down">
       <div class="shop-info-down-item">
-        <div>{{shop.sells}}</div>
+        <div>{{shop.sells|sellCountFilter}}</div>
         <div>总销量</div>
       </div>
       <div class="shop-info-down-item">
@@ -22,19 +22,9 @@
         <div>全部宝贝</div>
       </div>
     </div>
-    <div></div>
-    <ul>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
+    <div class="shop-bottom">
+      <div class="enter-shop">进店逛逛</div>
+    </div>
   </div>
 </template>
 
@@ -47,6 +37,15 @@
         default() {
           return {}
         }
+      }
+    },
+    filters:{
+      sellCountFilter(value){
+        let result=value;
+        if (value>10000){
+          result=(result/10000).toFixed(1)+'万'
+        }
+        return result;
       }
     }
   }
@@ -114,6 +113,22 @@
         font-weight: bolder;
         margin: 7px 0;
       }
+    }
+  }
+
+  .shop-bottom {
+    text-align: center;
+    margin-top: 10px;
+
+    .enter-shop {
+      display: inline-block;
+      font-size: 14px;
+      background-color: #f2f5f8;
+      width: 150px;
+      height: 30px;
+      text-align: center;
+      line-height: 30px;
+      border-radius: 10px;
     }
   }
 </style>
