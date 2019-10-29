@@ -1,7 +1,7 @@
 <template>
   <div class="goods-list-item" v-if="goodsList.length!==0">
     <div v-for="(item,index) in goodsList" :key="index" class="goods-item" @click="itemClick(item)">
-        <img :src="item.show.img" alt="" @load="imageLoad">
+      <img :src="item.image" alt="" @load="imageLoad">
       <p class="title">{{item.title}}</p>
       <div class="bottom">
         <p class="sell">
@@ -15,7 +15,7 @@
 
 <script>
   export default {
-    name: "GoodsListItem",
+    name: "DetailGoodsListItem",
     props: {
       goodsList: {
         type:Array,
@@ -28,8 +28,6 @@
     methods:{
       imageLoad(){
         this.$bus.$emit('itemImageLoad')
-        //取消监听
-        // this.$bus.$off('itemImageLoad','函数名')
       },
       itemClick(item){
         this.$router.push('/detail/'+item.iid);
@@ -37,15 +35,8 @@
         //   path:'/detail',
         //   query:{}
         // });
-
       }
-    },
-    // computed:{
-    //   showImage(item){
-    //     // return this.goodsList.show.img || this.goodsList.image
-    //     return item.show.img || item.image
-    //   }
-    // }
+    }
   }
 </script>
 s

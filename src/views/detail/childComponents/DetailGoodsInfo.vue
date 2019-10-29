@@ -7,7 +7,10 @@
     </div>
     <div class="goods-info-key"></div>
     <div class="goods-info-list">
-      <img v-for="(item, index) in goodsInfo.detailImage[0].list" :key="index" :src="item" @load="imgLoad" alt="">
+      <img v-for="(item, index) in goodsInfo.detailImage[0].list"
+           :key="index"
+           :src="item"
+           @load="imgLoad" alt="">
     </div>
   </div>
 </template>
@@ -32,15 +35,18 @@
     methods: {
       imgLoad() {
         // 所有的图片加载完了在发送就可以了.
-        if (++this.counter === this.imagesLength) {
-          this.$emit('imageLoad');
-        }
+        this.$emit('imageLoad');
+        // if (++this.counter === this.imagesLength) {
+        //   console.log('加载完毕');
+        //   this.$emit('imageLoad');
+        //
+        // }
       }
     },
     watch: {
       detailInfo() {
         // 获取图片的个数
-        this.imagesLength = this.detailInfo.detailImage[0].list.length
+        this.imagesLength = this.goodsInfo.detailImage[0].list.length
       }
     }
   }

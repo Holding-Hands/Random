@@ -3,13 +3,30 @@
     <nav-bar class="home-nav">
       <div slot="center">购物街</div>
     </nav-bar>
-    <tab-control :titles="title" ref="tabControl1" @tabControl="tabclick" v-show="isFixed" class="tab-control"></tab-control>
-    <scroll class="content" ref="scroll" :probe-type="3" @scrollTo="contentScroll"
-            :pull-up-load="true" @pullingUp="loadMore">
+    <tab-control
+      :titles="title"
+      ref="tabControl1"
+      @tabControl="tabclick"
+      v-show="isFixed"
+      class="tab-control">
+    </tab-control>
+    <scroll
+      class="content"
+      ref="scroll"
+      :probe-type="3"
+      @scrollTo="contentScroll"
+      :pull-up-load="true"
+      @pullingUp="loadMore">
       <home-swiper :banners="banners" @imageLoad="imageLoad"></home-swiper>
       <home-recommend :recommend="recommends"></home-recommend>
       <home-feature></home-feature>
-      <tab-control :titles="title" ref="tabControl2" @tabControl="tabclick" v-if="this.noFixed"></tab-control>
+      <tab-control
+        :titles="title"
+        ref="tabControl2"
+        @tabControl="tabclick"
+        v-if="noFixed"
+        >
+      </tab-control>
       <goods-list :goods="showGoods"></goods-list>
     </scroll>
     <back-top @click.native="backClick" v-show="isShow"></back-top>
@@ -33,7 +50,8 @@
   import {getHomeData, getHomeGoods} from "../../network/request/home";
 
   //导入common里的函数
-  import {debounce} from "../../common/tools";//导入函数调用不要加this调用
+  import {imageListenrMixin} from "../../common/mixin";//导入函数调用不要加this调用
+  import {topBackMixin} from "../../common/mixin";
 
   export default {
     name: "Home",
@@ -45,7 +63,6 @@
       TabControl,
       GoodsList,
       Scroll,
-      BackTop,
     },
     data() {
       return {
@@ -58,11 +75,12 @@
           'new': {page: 0, list: []}
         },
         currentType: 'pop',
-        isShow: false,
+
         tabOffSetTop: 0,
         isFixed: false,
-        noFixed:true,
-        saveY:0,
+        noFixed: true,
+        saveY: 0,
+        imageListenr: null,
       }
     },
     computed: {
@@ -77,25 +95,26 @@
       this.getHomeAllGoods('sell');
 
     },
+    mixins: [imageListenrMixin,topBackMixin],
     mounted() {
       //1.监听图片加载完成(解决滚动bug)，不要早created里监听，可能拿不到$ref  会报错undefinded
-      const refresh = debounce(this.$refs.scroll.refresh, 100);
-      this.$bus.$on('itemImageLoad', () => {
-        // this.$refs.scroll.refresh();
-        refresh()
-        // this.$refs.scroll.scrollTo(0,this.saveY,0);
-        // refresh()
-      })
+      // const refresh = debounce(this.$refs.scroll.refresh, 100);
+      // this.imageListenr = () => {
+      //   refresh()
+      // }
+      // this.$bus.$on('itemImageLoad', this.imageListenr)
     },
-    destroyed(){
+    destroyed() {
       // console.log('home destroyed');
     },
-    activated(){
+    activated() {
       this.$refs.scroll.refresh();//进入home组件再次刷新一次，防止自己回到顶部bug
-      this.$refs.scroll.scrollTo(0,this.saveY,0);
+      this.$refs.scroll.scrollTo(0, this.saveY, 0);
     },
-    deactivated(){
-      this.saveY=this.$refs.scroll.saveScrollY();
+    deactivated() {
+      this.saveY = this.$refs.scroll.saveScrollY();
+      //离开Home页取消监听
+      this.$bus.$off('itemImageLoad', this.imageListenr)
     },
     methods: {
       //事件监听相关方法
@@ -117,17 +136,21 @@
             this.currentType = 'new';
             break;
         }
-        this.$refs.tabControl1.currentIndex=index;
-        this.$refs.tabControl2.currentIndex=index;
+        // this.$refs.tabControl1.currentIndex = index;
+        // this.$refs.tabControl2.currentIndex = index;
+        if (this.$refs.tabControl1 !== undefined || this.$refs.tabControl2 !== undefined) {
+          this.$refs.tabControl1.currentIndex = index;
+          this.$refs.tabControl2.currentIndex = index;
+          console.log(this.$refs.tabControl1.currentIndex);
+          console.log(this.$refs.tabControl2.currentIndex);
+        }
+
       },
-      backClick() {
-        //遇到的坑，在电脑端的移动没有效果，在移动端有效果
-        this.$refs.scroll.scrollTo(0, 0, 500);
-      },
+
       contentScroll(position) {
-        this.isFixed=(-position.y)>=this.tabOffSetTop;
-        this.noFixed=!this.isFixed;
-        this.isShow = (-position.y) >1000;
+        this.isFixed = (-position.y) >= this.tabOffSetTop;
+        this.noFixed = !this.isFixed;
+        this.isShow = (-position.y) > 1000;
       },
       loadMore() {
         this.getHomeAllGoods(this.currentType);
@@ -178,9 +201,9 @@
     margin-bottom: 44px;
   }
 
-  .tab-control{
+  .tab-control {
     position: relative;
-    /*z-index: 9;*/
+    z-index: 999;
     background-color: white;
   }
 

@@ -6,11 +6,13 @@ const Home = () => import('../views/home/Home');
 const Category = () => import('../views/category/Category');
 
 const Detail = () => import('../views/detail/Detail');
+const Cart =()=> import('../views/cart/Cart');
 const routes = [
   {path:'',direction:Home},
   {path:'/home',component:Home},
   {path:'/category',component:Category},
-  {path:'/detail/:iid',component:Detail}//动态路由
+  {path:'/detail/:iid',component:Detail},//动态路由
+  {path:'/cart',component:Cart}
 ]
 
 const router = new VueRouter({

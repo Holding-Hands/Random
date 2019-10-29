@@ -9,6 +9,11 @@ export function getDetail(iid) {
   })
 }
 
+export function getRecommend() {
+  return request({
+    url:'/recommend',
+  })
+}
 //把多个数据整合到一个对象，采用面向对象方法
 export class Goods {
   constructor(itemInfo, columns, services) {
@@ -20,6 +25,7 @@ export class Goods {
     this.columns = columns
     this.services = services
     this.realPrice = itemInfo.price
+    this.lowNowPrice=itemInfo.lowNowPrice
   }
 }
 

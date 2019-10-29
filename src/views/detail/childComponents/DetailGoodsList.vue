@@ -5,10 +5,10 @@
 </template>
 
 <script>
-  import GoodsListItem from './GoodsListItem'
+  import GoodsListItem from './DetailGoodsListItem'
 
   export default {
-    name: "GoodsList",
+    name: "DetailGoodsList",
     components:{
       GoodsListItem
     },

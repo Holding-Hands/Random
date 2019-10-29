@@ -26,7 +26,9 @@
       methods:{
         itemClick(index){
           this.currentIndex=index;//获取当前的点击的索引值
-          this.$emit('tabControl',index)//把获取的索引值发送到Home父组件
+          this.$emit('tabControl',index); //把获取的索引值发送到Home父组件
+          console.log(index);
+          console.log(this.currentIndex);
         }
       }
     }
