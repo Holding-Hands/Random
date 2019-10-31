@@ -32,5 +32,4 @@
     transform: translate(-100%);
     position: absolute;
   }
-
 </style>

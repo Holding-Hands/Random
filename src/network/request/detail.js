@@ -19,13 +19,13 @@ export class Goods {
   constructor(itemInfo, columns, services) {
     this.title = itemInfo.title
     this.desc = itemInfo.desc
-    // this.newPrice = itemInfo.price
+    this.newPrice = itemInfo.price
     this.oldPrice = itemInfo.oldPrice
     this.discount = itemInfo.discountDesc
     this.columns = columns
     this.services = services
     this.realPrice = itemInfo.price
-    this.lowNowPrice=itemInfo.lowNowPrice
+    this.lowNowPrice=itemInfo.lowNowPrice//没有￥符号number类型，为了后面计算购物车加个
   }
 }
 

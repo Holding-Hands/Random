@@ -75,6 +75,7 @@
       getDetail(this.iid).then(res => {
         if (res.status === 200) {
           const data = res.data.result;
+          console.log(res);
 
           //获取轮播图片信息
           this.topImages = data.itemInfo.topImages;
@@ -137,7 +138,6 @@
         this.isShow=this.positionY > 3000;
       },
       addToCart(){
-        console.log('addToCart===detail');
         //获取购物车需要展示的信息，对象的形式
         const product = {};
         product.image = this.topImages[0];
@@ -145,9 +145,13 @@
         product.desc = this.goods.desc;
         product.price = this.goods.realPrice;
         product.iid = this.iid;
-        // product.newPrice = this.newPrice;
+        product.lowNowPrice = this.goods.lowNowPrice;
         // this.$store.commit('addToCart',product)
-        this.$store.dispatch('addToCart',product)
+        this.$store.dispatch('addToCart',product).then((a)=>{
+            // this.$toast.show(a)
+            console.log(this.$toast.show(a));
+          })
+
       }
     },
     mixins: [imageListenrMixin,topBackMixin],

@@ -35,7 +35,7 @@
 <style scoped lang="less">
 
   .detail-bottom-bar {
-    height: 49px;
+    height: 60px;
     background-color: #fff;
     position: relative;
     display: flex;
@@ -61,9 +61,9 @@
 
     .icon {
       display: block;
-      width: 22px;
-      height: 22px;
-      margin: 4px auto 3px;
+      width: 43px;
+      height: 38px;
+      margin: 1px auto;
       background: url('../../../assets/img/detail/detail_bottom.png') 0 0/100%;
     }
 
@@ -72,14 +72,14 @@
     }
 
     .shop {
-      background-position: 0 -98px;
+      background-position: 0 -107px;
     }
   }
 
   .bar-right {
     font-size: 15px;
     color: #fff;
-    line-height: 49px;
+    line-height: 60px;
 
     .cart {
       background-color: #ffe817;
@@ -90,4 +90,6 @@
       background-color: #f69;
     }
   }
+
+
 </style>

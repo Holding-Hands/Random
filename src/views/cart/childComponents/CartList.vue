@@ -1,21 +1,35 @@
 <template>
-<div>
-  <cart-list-item/>
-</div>
+  <div class="cart-goods-list">
+    <cart-list-item :product="item" v-for="(item,index) in cartList" :key="index"/>
+  </div>
 </template>
 
 <script>
-
+  import {mapGetters} from 'vuex'
   import CartListItem from './CartListItem'
 
   export default {
-    name: "CartList",
-    components:{
-      CartListItem,
+    name: "CartGoodsList",
+    components: {
+      CartListItem
+    },
+    data() {
+      return {
+        checked: true
+      };
+    },
+    computed: {
+      ...mapGetters(['cartList']),
     }
   }
 </script>
+<style scoped lang="less">
+  .cart-goods-list {
+    padding: 5px;
 
-<style scoped>
+    .checked {
+
+    }
+  }
 
 </style>
