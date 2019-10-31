@@ -19,7 +19,7 @@ export default {
       } else {
         // state.cartList.push(payload);
         context.commit('addCart', payload)
-        resolve('添加购物车成功')
+        reject('添加购物车成功')
       }
     })
   }

@@ -6,12 +6,12 @@
       <detail-swiper :top-images="topImages"/>
       <detail-base-info :goods="goods"/>
       <detail-shop-info :shop="shop"/>
-      <detail-goods-info :goods-info="goodsInfo"  @imageLoad="imageLoad"/>
+      <detail-goods-info :goods-info="goodsInfo" @imageLoad="imageLoad"/>
       <detail-param-info ref="param" :param-info="paramInfo"/>
       <detail-comment-info ref="comment" :comment-info="comment"/>
       <detail-goods-list ref="goods" :goods="recommend"/>
     </scroll>
-    <detail-bottom-bar class="bottom-bar" @addToCart="addToCart" />
+    <detail-bottom-bar class="bottom-bar" @addToCart="addToCart"/>
     <back-top @click.native="backClick" v-show="isShow"/>
   </div>
 </template>
@@ -52,10 +52,10 @@
         comment: {},
         recommend: [],
         imageListenr: null,
-        topYs:[],
-        topY:null,
-        positionY:0,
-        currentIndex:0,
+        topYs: [],
+        topY: null,
+        positionY: 0,
+        currentIndex: 0,
       }
     },
     components: {
@@ -114,30 +114,30 @@
         this.topYs.push(this.$refs.comment.$el.offsetTop)
         this.topYs.push(this.$refs.goods.$el.offsetTop)
         this.topYs.push(Number.MAX_VALUE)  //最大值
-      },100)
+      }, 100)
     },
     methods: {
       titleClick(index) {
-        this.$refs.scroll.scrollTo(0,-this.topYs[index],200)
+        this.$refs.scroll.scrollTo(0, -this.topYs[index], 200)
       },
       imageLoad() {
         this.$refs.scroll.refresh();
         this.topY();
       },
-      scroll(position){
+      scroll(position) {
         //1.获取y值
-        this.positionY=-position.y;
+        this.positionY = -position.y;
         //2.positionY和topYs中的值比较
-        for (let i=0;i< this.topYs.length-1;i++){
-          if (this.currentIndex!==i&&(this.positionY>=this.topYs[i]&&this.positionY<this.topYs[i+1])){
-            this.currentIndex=i;
-            this.$refs.nav.currentIndex=this.currentIndex;
+        for (let i = 0; i < this.topYs.length - 1; i++) {
+          if (this.currentIndex !== i && (this.positionY >= this.topYs[i] && this.positionY < this.topYs[i + 1])) {
+            this.currentIndex = i;
+            this.$refs.nav.currentIndex = this.currentIndex;
           }
         }
         //比较backTop位置
-        this.isShow=this.positionY > 3000;
+        this.isShow = this.positionY > 3000;
       },
-      addToCart(){
+      addToCart() {
         //获取购物车需要展示的信息，对象的形式
         const product = {};
         product.image = this.topImages[0];
@@ -147,14 +147,16 @@
         product.iid = this.iid;
         product.lowNowPrice = this.goods.lowNowPrice;
         // this.$store.commit('addToCart',product)
-        this.$store.dispatch('addToCart',product).then((a)=>{
-            // this.$toast.show(a)
-            console.log(this.$toast.show(a));
+        this.$store.dispatch('addToCart', product)
+          .then((mes) => {
+            this.$toast.show(mes)
           })
-
+          .catch((res) => {
+            this.$toast.show(res)
+          })
       }
     },
-    mixins: [imageListenrMixin,topBackMixin],
+    mixins: [imageListenrMixin, topBackMixin],
     mounted() {
       //重复对象采用混入
       // const refresh = debounce(this.$refs.scroll.refresh, 100)
@@ -178,7 +180,7 @@
     height: 100vh;
     background-color: white;
 
-    .bottom-bar{
+    .bottom-bar {
       position: fixed;
       bottom: 0;
       left: 0;
