@@ -1,18 +1,11 @@
 <template>
   <div class="profile-avatar">
-    <img src="../../../assets/img/profile/avatar.svg" alt="" class="avatar">
-    <div class="center">
-      <div class="login">
-        <a href="">登录</a><a href="">/注册</a>
-      </div>
-      <div class="phone">
-        <img src="../../../assets/img/profile/phone.svg" alt="">
-        <span>暂无绑定手机</span>
-      </div>
-    </div>
-    <div class="right">
-      >
-    </div>
+    <div class="logo"></div>
+    <span>
+      <router-link to="login" class="login">登录/</router-link>
+      <router-link to="register" class="register">注册</router-link>
+      <a href="javascript:;" class="down-arrow"></a>
+    </span>
   </div>
 </template>
 
@@ -22,46 +15,50 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="less">
   .profile-avatar {
-    display: flex;
     background-color: var(--color-tint);
-    height: 90px;
-    color:#fff;
+    color: #fff;
     position: relative;
-    /*justify-content: space-around;*/
-  }
-  .profile-avatar .avatar {
-    width: 75px;
+    width: 100%;
     height: 75px;
-    padding-top: 7px;
-  }
-  .center {
-    /*width: 60%;*/
-    text-align: center;
-    height: 100%;
-    padding-top:15px ;
-  }
-  .login a {
-    text-decoration: none;
-    color:#fff;
-    font-size: 20px;
-  }
-  .phone {
-    position: relative;
-    left: 10px;
-    top:4px;
-  }
-  .phone img {
-    width: 20px;
-    height: 25px;
-    vertical-align: middle;
 
+    .logo {
+      background: url("../../../assets/img/profile/avatar.svg") no-repeat;
+      width: 75px;
+      height: 75px;
+      background-size: 75px;
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 10px;
+      margin-right: 170px;
+    }
+
+
+    .login,
+    .register {
+      color: white;
+      font-size: 20px;
+      line-height: 75px;
+
+    }
+    .down-arrow {
+      width: 40px;
+      height: 40px;
+    }
+    .down-arrow:after {
+      content: '';
+      display: block;
+      width: 17px;
+      height: 17px;
+      border-right: 2px solid white;
+      border-top: 2px solid white;
+      -webkit-transform: rotate(227deg);
+      transform: rotate(403deg);
+      margin-top: -49px;
+      margin-left: 344px;
+    }
   }
-  .right {
-    font-size: 40px;
-    position: absolute;
-    right: 20px;
-    top: 20px;
-  }
+
+
 </style>

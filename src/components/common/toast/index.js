@@ -1,6 +1,6 @@
 import Toast from './Toast'
 
-export default obj = {
+export default {
   install: function (Vue) {
     console.log('---');
     //1.创建组件构造器

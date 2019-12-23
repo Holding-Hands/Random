@@ -37,7 +37,7 @@
 <script>
   import ProfileMessage from './ProfileMessage'
   export default {
-    name: "message",
+    name: "Message",
     components: {
       ProfileMessage
     }

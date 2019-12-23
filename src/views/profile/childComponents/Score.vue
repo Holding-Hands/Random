@@ -1,5 +1,5 @@
 <template>
-  <div class="jifen">
+  <div class="score">
     <profile-money>
       <p slot="top" class="top"><span>0</span>分</p>
       <p slot="bottom">我的积分</p>
@@ -11,7 +11,7 @@
   import ProfileMoney from './ProfileMoney'
 
   export default {
-    name: "jifen",
+    name: "Score",
     components: {
       ProfileMoney
     }
@@ -19,7 +19,7 @@
 </script>
 
 <style scoped>
-  .jifen {
+  .score {
     width: 33.3%;
   }
   .top span{

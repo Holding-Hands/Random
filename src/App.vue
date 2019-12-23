@@ -21,12 +21,10 @@
 
 <style lang="less" scoped>
   @import 'assets/css/base.css';
-
   .v-enter {
     opacity: 0;
     transform: translate(100%);
   }
-
   .v-leave-to {
     opacity: 0;
     transform: translate(-100%);

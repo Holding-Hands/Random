@@ -14,6 +14,7 @@ export function getRecommend() {
     url:'/recommend',
   })
 }
+
 //把多个数据整合到一个对象，采用面向对象方法
 export class Goods {
   constructor(itemInfo, columns, services) {

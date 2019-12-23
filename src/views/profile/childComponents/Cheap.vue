@@ -1,8 +1,8 @@
 <template>
-  <div class="money">
+  <div class="cheap">
     <profile-money>
-      <p slot="top" class="top"><span>0.00</span>元</p>
-      <p slot="bottom">我的余额</p>
+      <p slot="top" class="top"><span>0</span>个</p>
+      <p slot="bottom">我的优惠</p>
     </profile-money>
   </div>
 </template>
@@ -11,7 +11,7 @@
   import ProfileMoney from './ProfileMoney'
 
   export default {
-    name: "money",
+    name: "Money",
     components: {
       ProfileMoney
     }
@@ -19,11 +19,11 @@
 </script>
 
 <style scoped>
-  .money {
+  .cheap {
     width: 33.3%;
   }
   .top span{
-    color:#ff9950;
+    color: #ff9950;
     font-size: 30px;
     font-weight: 700;
   }

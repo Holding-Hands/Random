@@ -1,7 +1,7 @@
 <template>
   <div class="goods-list-item" v-if="goodsList.length!==0">
     <div v-for="(item,index) in goodsList" :key="index" class="goods-item" @click="itemClick(item)">
-        <img :src="item.show.img" alt="" @load="imageLoad">
+        <img v-lazy="item.show.img" alt="" @load="imageLoad">
       <p class="title">{{item.title}}</p>
       <div class="bottom">
         <p class="sell">

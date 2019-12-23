@@ -1,29 +1,23 @@
 <template>
   <div id="profile">
-    <profile-nav-bar></profile-nav-bar>
-
-    <profile-avatar></profile-avatar>
-
+    <profile-nav-bar/>
+    <profile-avatar/>
     <div class="bar">
-      <money></money>
-      <youhui></youhui>
-      <jifen></jifen>
+      <Money/>
+      <Cheap/>
+      <Score/>
     </div>
-
-    <message></message>
-
-
+    <Message/>
   </div>
-
 </template>
 
 <script>
   import ProfileNavBar from './childComponents/ProfileNavBar'
   import ProfileAvatar from './childComponents/ProfileAvatar'
-  import Money from './childComponents/money'
-  import Youhui from './childComponents/youhui'
-  import Jifen from './childComponents/jifen'
-  import message from './childComponents/message'
+  import Money from './childComponents/Money'
+  import Cheap from './childComponents/Cheap'
+  import Score from './childComponents/Score'
+  import Message from './childComponents/Message'
 
   export default {
     name: "Profile",
@@ -31,9 +25,9 @@
       ProfileNavBar,
       ProfileAvatar,
       Money,
-      Youhui,
-      Jifen,
-      message
+      Cheap,
+      Score,
+      Message
 
     }
   }

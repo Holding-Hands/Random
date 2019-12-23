@@ -3,13 +3,14 @@
     <nav-bar class="home-nav">
       <div slot="center">购物街</div>
     </nav-bar>
+
     <tab-control
       :titles="title"
       ref="tabControl1"
       @tabControl="tabclick"
       v-show="isFixed"
-      class="tab-control">
-    </tab-control>
+      class="tab-control" />
+
     <scroll
       class="content"
       ref="scroll"
@@ -17,19 +18,24 @@
       @scrollTo="contentScroll"
       :pull-up-load="true"
       @pullingUp="loadMore">
-      <home-swiper :banners="banners" @imageLoad="imageLoad"></home-swiper>
-      <home-recommend :recommend="recommends"></home-recommend>
-      <home-feature></home-feature>
+
+      <home-swiper :banners="banners" @imageLoad="imageLoad" />
+      <home-recommend :recommend="recommends" />
+      <home-feature />
+
       <tab-control
         :titles="title"
         ref="tabControl2"
         @tabControl="tabclick"
         v-if="noFixed"
-        >
-      </tab-control>
-      <goods-list :goods="showGoods"></goods-list>
+       />
+
+      <goods-list :goods="showGoods" />
+
     </scroll>
-    <back-top @click.native="backClick" v-show="isShow"></back-top>
+
+    <back-top @click.native="backClick" v-show="isShow" />
+
   </div>
 </template>
 
@@ -63,6 +69,7 @@
       TabControl,
       GoodsList,
       Scroll,
+      BackTop
     },
     data() {
       return {
@@ -95,7 +102,7 @@
       this.getHomeAllGoods('sell');
 
     },
-    mixins: [imageListenrMixin,topBackMixin],
+    mixins: [imageListenrMixin, topBackMixin],
     mounted() {
       //1.监听图片加载完成(解决滚动bug)，不要早created里监听，可能拿不到$ref  会报错undefinded
       // const refresh = debounce(this.$refs.scroll.refresh, 100);
